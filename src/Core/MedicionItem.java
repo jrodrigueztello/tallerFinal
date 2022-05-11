@@ -21,6 +21,16 @@ public abstract class MedicionItem {
     private ArrayList<Float> idealMedicion;
     private ArrayList<Sensor> sensores;
     private ArrayList<Actuador> actuadores;
+
+    public MedicionItem() {
+        this.realMedicion = new ArrayList<>();
+        this.idealMedicion = new ArrayList<>();
+        this.sensores = new ArrayList<>();
+        this.actuadores = new ArrayList<>();
+        
+    }
+    
+    
     
     public abstract boolean compararMediciones(Item item);
     public abstract boolean tomarAccion(Item item);
@@ -66,6 +76,7 @@ public abstract class MedicionItem {
     }
     
     public void adicionarSensor(CervezaSensor cervezaSensor){
+        System.out.println(cervezaSensor.toString());
         this.sensores.add(cervezaSensor);
     }
             

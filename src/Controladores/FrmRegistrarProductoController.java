@@ -39,7 +39,6 @@ public class FrmRegistrarProductoController implements ActionListener {
             List<Producto> listaProductos = productoRepository.listProductos() ;
             mostrarTable(frm_rp.table_productos, listaProductos);
             limpiarEntradas();
-            System.out.println("Entro");
         }
         if(e.getSource()==frm_rp.btn_limpiar){
             System.err.println("error ");
