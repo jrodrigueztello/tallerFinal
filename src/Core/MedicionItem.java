@@ -9,14 +9,17 @@ import Externo.Sensor;
 import FabricanteCervezas.CervezaActuador;
 import FabricanteCervezas.CervezaSensor;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 
 
 /**
  *
- * @author jonathanrodriguez
+ * @author Jonathan Rodriguez, Juan Vallejos
  */
-public abstract class MedicionItem {
+public abstract class MedicionItem extends Observable implements Observer{
+    public ArrayList<Observer> observers =new ArrayList<Observer>();
     private ArrayList<Float> realMedicion;
     private ArrayList<Float> idealMedicion;
     private ArrayList<Sensor> sensores;
@@ -84,5 +87,12 @@ public abstract class MedicionItem {
         this.actuadores.add(cervezaActuador);
     }
     
+    
+    @Override
+    public abstract void update(Observable o, Object arg);
+    
+     public abstract void addObservable(Observer observer);
+   
+    public abstract void notifyObservers();
     
 }

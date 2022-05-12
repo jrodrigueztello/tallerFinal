@@ -4,56 +4,52 @@
  */
 package FabricanteCervezas;
 
-import Core.Item;
+import Modelos.ObjectObservable;
+import Modelos.Producto;
+import java.util.Observable;
+import java.util.Observer;
+
+
 
 /**
  *
- * @author jonathanrodriguez
+ * @author Jonathan Rodriguez, Juan Vallejos
  */
-public class Cerveza extends Item {
-    private boolean sellado;
-    private String estadoEmpaque ;
-    private String estadoBase;
-    private String estadoFinal;
+public class Cerveza extends Producto {
+    
+    private String marca;
 
-    public Cerveza(boolean sellado, String estadoEmpaque, String estadoBase) {
-        super();
-        this.sellado = sellado;
-        this.estadoEmpaque = estadoEmpaque;
-        this.estadoBase = estadoBase;
+    public Cerveza(String nombre, String codigo, String marca) {
+        super(nombre, codigo);
+        this.marca = marca;
+        
     }
 
-    public void setSellado(boolean sellado) {
-        this.sellado = sellado;
+    @Override
+    public void addObservable(Observer observer) {
+        observers.add(observer);
+   
     }
 
-    public void setEstadoEmpaque(String estadoEmpaque) {
-        this.estadoEmpaque = estadoEmpaque;
+    @Override
+    public void notifyObservers(Object a) {
+        if(!observers.isEmpty()){
+           for (int i = 0; i < observers.size(); i++) {
+               observers.get(i).update(this, a);
+           }
+       }
     }
 
-    public void setEstadoBase(String estadoBase) {
-        this.estadoBase = estadoBase;
+    @Override
+    public void notifyObservers() {
+         if(!observers.isEmpty()){
+           for (int i = 0; i < observers.size(); i++) {
+               observers.get(i).update(this, i);
+           }
+       }
     }
 
-    public boolean isSellado() {
-        return sellado;
-    }
-
-    public String getEstadoEmpaque() {
-        return estadoEmpaque;
-    }
-
-    public String getEstadoBase() {
-        return estadoBase;
-    }
-
-    public String getEstadoFinal() {
-        return estadoFinal;
-    }
-
-    public void setEstadoFinal(String estadoFinal) {
-        this.estadoFinal = estadoFinal;
-    }
+  
     
     
 }

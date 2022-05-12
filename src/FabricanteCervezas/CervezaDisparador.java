@@ -6,17 +6,47 @@ package FabricanteCervezas;
 
 import Core.Disparador;
 import Core.MedicionItem;
+import Modelos.ObjectObservable;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  *
- * @author jonathanrodriguez
+ * @author Jonathan Rodriguez, Juan Vallejos
  */
 public class CervezaDisparador extends Disparador {
 
-    public CervezaDisparador(CervezaSensor cervezaSensor) {
-        fabrica = new CervezaFabrica();
-        MedicionItem medicionItem = fabrica.crearItem();
-        medicionItem.adicionarSensor(cervezaSensor);
-        medicionItem.adicionarActuador(new CervezaActuador());
+    CervezaSensor sensor;
+    CervezaMedicion medicion;
+
+    public CervezaDisparador() {
+        this.sensor = new CervezaSensor();
+        this.medicion = new CervezaMedicion();
+        addObservable(this);
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        ObjectObservable objectObservable = (ObjectObservable)arg;
+        if("disparador".equals(objectObservable.getObservadorDesignado())){
+            Double medicionSensor = this.sensor.ejecutarMedicionSensor();
+            Double medicionIdeal = this.medicion.ejecutarMedicion(medicionSensor, 90.0);
+            System.err.println("medicionSensor" + medicionSensor);
+            System.err.println("medicionIdeal" + medicionIdeal);
+        }
+    }
+
+    @Override
+    public void addObservable(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        if (!observers.isEmpty()) {
+            for (int i = 0; i < observers.size(); i++) {
+                observers.get(i).update(this, i);
+            }
+        }
     }
 }

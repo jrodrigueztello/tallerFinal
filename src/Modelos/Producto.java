@@ -4,23 +4,28 @@
  */
 package Modelos;
 
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
+
 /**
  *
- * @author jonathanrodriguez
+ * @author Jonathan Rodriguez, Juan Vallejos
  */
-public class Producto {
+public abstract class Producto extends Observable {
     private String nombre;
     private String codigo;
-    private String marca;
-    private String peso;
-
-    public Producto(String nombre, String codigo, String marca, String peso) {
+    private Float calidadProducto;
+    private Float porcentajeMedicion;
+    private String estadoFinal;
+    
+    public ArrayList<Observer> observers =new ArrayList<Observer>();
+    
+    public Producto(String nombre, String codigo) {
         this.nombre = nombre;
         this.codigo = codigo;
-        this.marca = marca;
-        this.peso = peso;
     }
-    
+
     public String getNombre() {
         return nombre;
     }
@@ -29,12 +34,12 @@ public class Producto {
         return codigo;
     }
 
-    public String getMarca() {
-        return marca;
+    public Float getCalidadProducto() {
+        return calidadProducto;
     }
 
-    public String getPeso() {
-        return peso;
+    public String getEstadoFinal() {
+        return estadoFinal;
     }
 
     public void setNombre(String nombre) {
@@ -45,13 +50,29 @@ public class Producto {
         this.codigo = codigo;
     }
 
-    public void setMarca(String marca) {
-        this.marca = marca;
+    public void setCalidadProducto(Float calidadProducto) {
+        this.calidadProducto = calidadProducto;
     }
 
-    public void setPeso(String peso) {
-        this.peso = peso;
+    public void setEstadoFinal(String estadoFinal) {
+        this.estadoFinal = estadoFinal;
     }
+
+    public Float getPorcentajeMedicion() {
+        return porcentajeMedicion;
+    }
+
+    public void setPorcentajeMedicion(Float porcentajeMedicion) {
+        this.porcentajeMedicion = porcentajeMedicion;
+    }
+    
+    
+    
+   public abstract void addObservable(Observer observer);
+   
+   public abstract void notifyObservers();
+
+    
     
     
 }

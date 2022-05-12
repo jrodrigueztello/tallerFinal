@@ -4,9 +4,11 @@
  */
 package Vistas;
 
+import FabricanteCervezas.CervezaInterface;
+
 /**
  *
- * @author jonathanrodriguez
+ * @author Jonathan Rodriguez, Juan Vallejos
  */
 public class Frm_Registrar_Producto extends javax.swing.JDialog {
 
@@ -212,4 +214,5 @@ public class Frm_Registrar_Producto extends javax.swing.JDialog {
     public javax.swing.JTextField txt_nombre;
     public javax.swing.JTextField txt_peso;
     // End of variables declaration//GEN-END:variables
+
 }

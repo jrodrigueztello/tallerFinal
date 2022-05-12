@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author jonathanrodriguez
+ * @author Jonathan Rodriguez, Juan Vallejos
  */
 public class ProductoRepository {
     List<Producto> list_productos = new ArrayList<>() ;

@@ -6,6 +6,8 @@ package FabricanteCervezas;
 
 import Core.Item;
 import Core.MedicionItem;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  *
@@ -13,6 +15,12 @@ import Core.MedicionItem;
  */
 public class CervezaMedicion extends MedicionItem {
 
+    public CervezaMedicion() {
+        addObservable(this);
+    }
+    
+    
+    
     @Override
     public boolean compararMediciones(Item item) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -26,6 +34,32 @@ public class CervezaMedicion extends MedicionItem {
     @Override
     public Item leerSensor() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        System.out.println("observable desde medicion");
+    }
+
+    @Override
+    public void addObservable(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        if(!observers.isEmpty()){
+           for (int i = 0; i < observers.size(); i++) {
+               observers.get(i).update(this, i);
+           }
+        }
+    }
+
+    Double ejecutarMedicion(Double medicionSensor,Double medicionIdeal) {
+        if(medicionSensor>90){
+            
+        }
+        return (medicionSensor *100)/medicionIdeal;
     }
     
 }

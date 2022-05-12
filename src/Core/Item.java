@@ -6,7 +6,7 @@ package Core;
 
 /**
  *
- * @author jonathanrodriguez
+ * @author Jonathan Rodriguez, Juan Vallejos
  */
 public class Item {
     

@@ -8,7 +8,7 @@ import Core.Disparador;
 
 /**
  *
- * @author jonathanrodriguez
+ * @author Jonathan Rodriguez, Juan Vallejos
  */
 public abstract class SensorActivo extends Sensor {
     private Disparador disparador;
