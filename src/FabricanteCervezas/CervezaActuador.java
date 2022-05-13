@@ -6,6 +6,7 @@ package FabricanteCervezas;
 
 import Core.Item;
 import Externo.Actuador;
+import Modelos.ObjectObservable;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -39,6 +40,18 @@ public class CervezaActuador extends Actuador {
                 observers.get(i).update(this, i);
             }
         }
+    }
+
+    public void tomarDecision(Cerveza producto) {
+        String desicion = "";
+        if(producto.getPorcentajeMedicion()>90){
+            desicion = "APROBADO";
+        }
+        desicion = "RECHAZADO";
+        ObjectObservable objectObservable = new ObjectObservable("desicionActuador", null, null, desicion, (Cerveza) producto);
+        producto.notifyObservers(objectObservable);
+        
+        
     }
 
 }

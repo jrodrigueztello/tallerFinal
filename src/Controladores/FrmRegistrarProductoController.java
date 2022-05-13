@@ -27,14 +27,14 @@ import javax.swing.table.DefaultTableModel;
  * @author Jonathan Rodriguez, Juan Vallejos
  */
 public class FrmRegistrarProductoController implements ActionListener, Observer {
+
     Frm_Registrar_Producto frm_rp;
-    CervezaDisparador disparador ;
+    CervezaDisparador disparador;
     CervezaSensor sensor;
     CervezaMedicion medicion;
     CervezaActuador actuador;
     ProductoRepository productoRepository = new ProductoRepository();
     Cerveza producto;
-    
 
     public FrmRegistrarProductoController(Frm_Registrar_Producto frm_rp) {
         this.disparador = new CervezaDisparador();
@@ -47,7 +47,7 @@ public class FrmRegistrarProductoController implements ActionListener, Observer 
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==frm_rp.btn_escanear){
+        if (e.getSource() == frm_rp.btn_escanear) {
             this.producto = new Cerveza(
                     frm_rp.txt_nombre.getText(),
                     frm_rp.txt_codgo.getText(),
@@ -58,14 +58,11 @@ public class FrmRegistrarProductoController implements ActionListener, Observer 
             this.producto.addObservable(medicion);
             this.producto.addObservable(actuador);
             this.producto.addObservable(this);
-            ObjectObservable objectObservable = new ObjectObservable("disparador");
+            ObjectObservable objectObservable = new ObjectObservable("disparador", null, null, null, this.producto);
             this.producto.notifyObservers(objectObservable);
-            productoRepository.save(this.producto);
-            List<Producto> listaProductos = productoRepository.listProductos() ;
-            mostrarTable(frm_rp.table_productos, listaProductos);
-            limpiarEntradas();
+            
         }
-        if(e.getSource()==frm_rp.btn_limpiar){
+        if (e.getSource() == frm_rp.btn_limpiar) {
             System.err.println("error ");
             limpiarEntradas();
         }
@@ -73,22 +70,25 @@ public class FrmRegistrarProductoController implements ActionListener, Observer 
 
     private void limpiarEntradas() {
         frm_rp.txt_codgo.setText("");
-        frm_rp.txt_marca.setText("");
         frm_rp.txt_nombre.setText("");
-        frm_rp.txt_peso.setText("");
     }
 
     private void mostrarTable(JTable table_productos, List<Producto> listaProductos) {
-        DefaultTableModel modelo  = new DefaultTableModel();
-        modelo.addColumn(("codigo"));
+            DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn(("nombre"));
-        modelo.addColumn(("marca"));
+        modelo.addColumn(("codigo"));
+        modelo.addColumn(("calidadProducto"));
+        modelo.addColumn(("porcentajeMedicion"));
+        modelo.addColumn(("accionActuador"));
         for (int i = 0; i < listaProductos.size(); i++) {
             Object[] lista = {
-                listaProductos.get(i).getCodigo(),
                 listaProductos.get(i).getNombre(),
-                listaProductos.get(i).getNombre()
-            };
+                listaProductos.get(i).getCodigo(),
+                listaProductos.get(i).getCalidadProducto(),
+                listaProductos.get(i).getPorcentajeMedicion(),
+                listaProductos.get(i).getEstadoFinal(),
+                
+            };  
             modelo.addRow(lista);
         }
         table_productos.setModel(modelo);
@@ -96,15 +96,28 @@ public class FrmRegistrarProductoController implements ActionListener, Observer 
 
     @Override
     public void update(Observable o, Object arg) {
-        ObjectObservable objectObservable = (ObjectObservable)arg;
-        if(objectObservable.getObservadorDesignado()=="medicionSensor"){
-            
+        ObjectObservable objectObservable = (ObjectObservable) arg;
+        if (objectObservable.getObservadorDesignado() == "medicionSensor") {
+            this.producto.setCalidadProducto(objectObservable.getCalidadSensor());
         }
-        if(objectObservable.getObservadorDesignado()=="porcentajeMedicionIdeal"){
-            
+        if (objectObservable.getObservadorDesignado() == "medicionIdeal") {
+            this.producto.setPorcentajeMedicion(objectObservable.getCalidadMedicion());
+             this.actuador.tomarDecision(this.producto);
         }
+        if (objectObservable.getObservadorDesignado() == "desicionActuador") {
+            this.producto.setEstadoFinal(objectObservable.getEstadoFinal());
+            imprimirResultados(this.producto);
+        }
+ 
     }
 
-   
-    
+    private void imprimirResultados(Producto prod) {
+            productoRepository.save(prod);
+            List<Producto> listaProductos = productoRepository.listProductos();
+            mostrarTable(frm_rp.table_productos, listaProductos);
+            limpiarEntradas();
+            this.producto = null;
+            this.frm_rp.habilitarBtnEscanner();
+    }
+
 }

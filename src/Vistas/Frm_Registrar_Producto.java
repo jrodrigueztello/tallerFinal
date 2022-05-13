@@ -17,6 +17,17 @@ public class Frm_Registrar_Producto extends javax.swing.JDialog {
      */
     public Frm_Registrar_Producto() {
         initComponents();
+        btn_escanear.setEnabled(false);
+                
+    }
+    
+    public  void habilitarBtnEscanner(){
+        if(!txt_codgo.getText().isEmpty() && !txt_nombre.getText().isEmpty()){
+           btn_escanear.setEnabled(true);
+        }
+        else{
+            btn_escanear.setEnabled(false);
+        }
     }
 
     /**
@@ -31,20 +42,28 @@ public class Frm_Registrar_Producto extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         txt_codgo = new javax.swing.JTextField();
         txt_nombre = new javax.swing.JTextField();
-        txt_marca = new javax.swing.JTextField();
-        txt_peso = new javax.swing.JTextField();
         btn_escanear = new javax.swing.JButton();
         btn_limpiar = new javax.swing.JButton();
         btn_cerrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table_productos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        txt_codgo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_codgoKeyReleased(evt);
+            }
+        });
+
+        txt_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_nombreKeyReleased(evt);
+            }
+        });
 
         btn_escanear.setText("Escanear");
         btn_escanear.addActionListener(new java.awt.event.ActionListener() {
@@ -63,10 +82,6 @@ public class Frm_Registrar_Producto extends javax.swing.JDialog {
 
         jLabel3.setText("Nombre");
 
-        jLabel4.setText("Peso");
-
-        jLabel5.setText("Marca");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -81,16 +96,12 @@ public class Frm_Registrar_Producto extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
                     .addComponent(jLabel3)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(txt_nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                        .addComponent(txt_codgo)
-                        .addComponent(txt_marca)
-                        .addComponent(txt_peso)))
+                        .addComponent(txt_codgo)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -106,21 +117,13 @@ public class Frm_Registrar_Producto extends javax.swing.JDialog {
                 .addComponent(jLabel3)
                 .addGap(1, 1, 1)
                 .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addGap(2, 2, 2)
-                .addComponent(txt_peso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
-                .addGap(1, 1, 1)
-                .addComponent(txt_marca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(42, 42, 42)
                 .addComponent(btn_escanear)
                 .addGap(18, 18, 18)
                 .addComponent(btn_limpiar)
                 .addGap(18, 18, 18)
                 .addComponent(btn_cerrar)
-                .addGap(32, 32, 32))
+                .addGap(122, 122, 122))
         );
 
         table_productos.setModel(new javax.swing.table.DefaultTableModel(
@@ -167,6 +170,14 @@ public class Frm_Registrar_Producto extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_escanearActionPerformed
 
+    private void txt_codgoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_codgoKeyReleased
+        habilitarBtnEscanner();
+    }//GEN-LAST:event_txt_codgoKeyReleased
+
+    private void txt_nombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyReleased
+        habilitarBtnEscanner();
+    }//GEN-LAST:event_txt_nombreKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -198,21 +209,17 @@ public class Frm_Registrar_Producto extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btn_cerrar;
+    private javax.swing.JButton btn_cerrar;
     public javax.swing.JButton btn_escanear;
     public javax.swing.JButton btn_limpiar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
+    public javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable table_productos;
     public javax.swing.JTextField txt_codgo;
-    public javax.swing.JTextField txt_marca;
     public javax.swing.JTextField txt_nombre;
-    public javax.swing.JTextField txt_peso;
     // End of variables declaration//GEN-END:variables
 
 }

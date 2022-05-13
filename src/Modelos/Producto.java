@@ -15,8 +15,8 @@ import java.util.Observer;
 public abstract class Producto extends Observable {
     private String nombre;
     private String codigo;
-    private Float calidadProducto;
-    private Float porcentajeMedicion;
+    private Double calidadProducto;
+    private Double porcentajeMedicion;
     private String estadoFinal;
     
     public ArrayList<Observer> observers =new ArrayList<Observer>();
@@ -34,7 +34,7 @@ public abstract class Producto extends Observable {
         return codigo;
     }
 
-    public Float getCalidadProducto() {
+    public Double getCalidadProducto() {
         return calidadProducto;
     }
 
@@ -50,7 +50,7 @@ public abstract class Producto extends Observable {
         this.codigo = codigo;
     }
 
-    public void setCalidadProducto(Float calidadProducto) {
+    public void setCalidadProducto(Double calidadProducto) {
         this.calidadProducto = calidadProducto;
     }
 
@@ -58,11 +58,11 @@ public abstract class Producto extends Observable {
         this.estadoFinal = estadoFinal;
     }
 
-    public Float getPorcentajeMedicion() {
+    public Double getPorcentajeMedicion() {
         return porcentajeMedicion;
     }
 
-    public void setPorcentajeMedicion(Float porcentajeMedicion) {
+    public void setPorcentajeMedicion(Double porcentajeMedicion) {
         this.porcentajeMedicion = porcentajeMedicion;
     }
     

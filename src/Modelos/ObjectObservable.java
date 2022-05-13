@@ -4,18 +4,25 @@
  */
 package Modelos;
 
+import FabricanteCervezas.Cerveza;
+
 /**
  *
  * @author Jonathan Rodriguez, Juan Vallejos
  */
 public class ObjectObservable {
+    Producto producto;
     String observadorDesignado;
     Double calidadSensor;
     Double calidadMedicion;
     String estadoFinal;
 
-    public ObjectObservable(String observadorDesignado) {
+    public ObjectObservable(String observadorDesignado, Double calidadSensor, Double calidadMedicion, String estadoFinal, Cerveza producto) {
         this.observadorDesignado = observadorDesignado;
+        this.calidadSensor = calidadSensor;
+        this.calidadMedicion = calidadMedicion;
+        this.estadoFinal = estadoFinal;
+        this.producto = producto;
     }
 
     public String getObservadorDesignado() {
@@ -50,6 +57,14 @@ public class ObjectObservable {
         this.calidadSensor = calidadSensor;
     }
 
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
     
     
+
 }

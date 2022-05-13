@@ -6,6 +6,8 @@ package FabricanteCervezas;
 
 import Core.Item;
 import Core.MedicionItem;
+import Modelos.ObjectObservable;
+import Modelos.Producto;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -21,20 +23,7 @@ public class CervezaMedicion extends MedicionItem {
     
     
     
-    @Override
-    public boolean compararMediciones(Item item) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public boolean tomarAccion(Item item) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Item leerSensor() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+  
 
     @Override
     public void update(Observable o, Object arg) {
@@ -55,11 +44,15 @@ public class CervezaMedicion extends MedicionItem {
         }
     }
 
-    Double ejecutarMedicion(Double medicionSensor,Double medicionIdeal) {
+    Double ejecutarMedicion(Double medicionSensor,Double medicionIdeal, Producto producto) {
+        Double medicion = 0.0;
         if(medicionSensor>90){
-            
+            medicion =  100.0;
         }
-        return (medicionSensor *100)/medicionIdeal;
+        medicion =  (medicionSensor *100)/medicionIdeal;
+        ObjectObservable objectObservable = new ObjectObservable("medicionIdeal", null, medicion, null, (Cerveza) producto);
+        producto.notifyObservers(objectObservable);
+        return medicion;
     }
     
 }

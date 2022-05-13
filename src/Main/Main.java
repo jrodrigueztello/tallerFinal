@@ -17,6 +17,7 @@ public class Main {
     public static FrmRegistrarProductoController c_frm_rp;
     public static void main(String[] args) {
         frm_rp = new Frm_Registrar_Producto();
+        frm_rp.setSize(800, 400);
         frm_rp.setVisible(true);        
         c_frm_rp = new FrmRegistrarProductoController(frm_rp);
         frm_rp.setLocationRelativeTo(null);

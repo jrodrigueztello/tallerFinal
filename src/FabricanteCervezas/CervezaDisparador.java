@@ -29,10 +29,8 @@ public class CervezaDisparador extends Disparador {
     public void update(Observable o, Object arg) {
         ObjectObservable objectObservable = (ObjectObservable)arg;
         if("disparador".equals(objectObservable.getObservadorDesignado())){
-            Double medicionSensor = this.sensor.ejecutarMedicionSensor();
-            Double medicionIdeal = this.medicion.ejecutarMedicion(medicionSensor, 90.0);
-            System.err.println("medicionSensor" + medicionSensor);
-            System.err.println("medicionIdeal" + medicionIdeal);
+            Double medicionSensor = this.sensor.realizarMedicion(objectObservable.getProducto());
+            Double medicionIdeal = this.medicion.ejecutarMedicion(medicionSensor, 90.0,objectObservable.getProducto());
         }
     }
 

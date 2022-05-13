@@ -4,6 +4,7 @@
  */
 package Externo;
 
+import Modelos.Producto;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -13,7 +14,7 @@ import java.util.Observer;
  * @author Jonathan Rodriguez, Juan Vallejos
  */
 public abstract class Sensor extends Observable implements Observer {
-    public abstract Object realizarMedicion();
+    public abstract Double realizarMedicion(Producto p);
     public ArrayList<Observer> observers =new ArrayList<Observer>();
     
       @Override

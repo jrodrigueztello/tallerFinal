@@ -8,6 +8,7 @@ import Core.Disparador;
 import Externo.Sensor;
 import Externo.SensorActivo;
 import Modelos.ObjectObservable;
+import Modelos.Producto;
 import Vistas.Frm_Registrar_Producto;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,20 +25,21 @@ import javax.swing.JComponent;
  * @author Jonathan Rodriguez, Juan Vallejos
  */
 public class CervezaSensor extends Sensor {
-    
-    
+
     public CervezaSensor() {
         addObservable(this);
     }
-   
 
     @Override
-    public Object realizarMedicion() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Double realizarMedicion(Producto p) {
+        Double medicionSensor = (Math.random() * (100 - 60 + 1) + 60);
+        ObjectObservable objectObservable = new ObjectObservable("medicionSensor", medicionSensor, null, null, (Cerveza) p);
+        p.notifyObservers(objectObservable);
+        return medicionSensor;
     }
 
     void setDisparador(CervezaDisparador cervezaDisparador) {
-    
+
     }
 
     @Override
@@ -48,19 +50,16 @@ public class CervezaSensor extends Sensor {
 
     @Override
     public void addObservable(Observer observer) {
-         observers.add(observer);
+        observers.add(observer);
     }
 
     @Override
     public void notifyObservers() {
-        if(!observers.isEmpty()){
-           for (int i = 0; i < observers.size(); i++) {
-               observers.get(i).update(this, i);
-           }
+        if (!observers.isEmpty()) {
+            for (int i = 0; i < observers.size(); i++) {
+                observers.get(i).update(this, i);
+            }
         }
     }
 
-    Double ejecutarMedicionSensor() {
-        return (Math.random()*(100-60+1)+60); 
-    }
 }
