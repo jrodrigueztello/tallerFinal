@@ -20,73 +20,12 @@ import java.util.Observer;
  */
 public abstract class MedicionItem extends Observable implements Observer{
     public ArrayList<Observer> observers =new ArrayList<Observer>();
-    private ArrayList<Float> realMedicion;
-    private ArrayList<Float> idealMedicion;
-    private ArrayList<Sensor> sensores;
-    private ArrayList<Actuador> actuadores;
 
     public MedicionItem() {
-        this.realMedicion = new ArrayList<>();
-        this.idealMedicion = new ArrayList<>();
-        this.sensores = new ArrayList<>();
-        this.actuadores = new ArrayList<>();
+      
         
     }
-    
-    
-    
-    public abstract boolean compararMediciones(Item item);
-    public abstract boolean tomarAccion(Item item);
-    public abstract Item leerSensor();
-    
-    public void correr(){
-        Item item = leerSensor();
-        if(compararMediciones(item)){
-            tomarAccion(item);
-        }
-    }
-
-    public ArrayList<Float> getRealMedicion() {
-        return realMedicion;
-    }
-
-    public ArrayList<Float> getIdealMedicion() {
-        return idealMedicion;
-    }
-
-    public ArrayList<Sensor> getSensores() {
-        return sensores;
-    }
-
-    public ArrayList<Actuador> getActuadores() {
-        return actuadores;
-    }
-
-    public void setRealMedicion(ArrayList<Float> realMedicion) {
-        this.realMedicion = realMedicion;
-    }
-
-    public void setIdealMedicion(ArrayList<Float> idealMedicion) {
-        this.idealMedicion = idealMedicion;
-    }
-
-    public void setSensores(ArrayList<Sensor> sensores) {
-        this.sensores = sensores;
-    }
-
-    public void setActuadores(ArrayList<Actuador> actuadores) {
-        this.actuadores = actuadores;
-    }
-    
-    public void adicionarSensor(CervezaSensor cervezaSensor){
-        System.out.println(cervezaSensor.toString());
-        this.sensores.add(cervezaSensor);
-    }
-            
-    public void adicionarActuador(CervezaActuador cervezaActuador){
-        this.actuadores.add(cervezaActuador);
-    }
-    
+ 
     
     @Override
     public abstract void update(Observable o, Object arg);

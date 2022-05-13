@@ -17,7 +17,7 @@ public abstract class SensorActivo extends Sensor {
     }
     
     public void notificarDisparador(){
-        this.disparador.actualizar(this);
+       // this.disparador.actualizar(this);
     }
 
     public Disparador getDisparador() {
