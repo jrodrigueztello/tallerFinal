@@ -61,10 +61,7 @@ public class FrmRegistrarProductoController implements ActionListener, Observer 
             this.producto.notifyObservers(objectObservable);
 
         }
-        if (e.getSource() == frm_rp.btn_limpiar) {
-            System.err.println("error ");
-            limpiarEntradas();
-        }
+       
     }
 
     private void limpiarEntradas() {
@@ -76,8 +73,8 @@ public class FrmRegistrarProductoController implements ActionListener, Observer 
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn(("nombre"));
         modelo.addColumn(("codigo"));
-        modelo.addColumn(("calidadProducto"));
-        modelo.addColumn(("porcentajeMedicion"));
+        modelo.addColumn(("calidad segun sensor"));
+        modelo.addColumn(("calidad segun medida ideal"));
         modelo.addColumn(("accionActuador"));
         for (int i = 0; i < listaProductos.size(); i++) {
             Object[] lista = {
@@ -94,14 +91,14 @@ public class FrmRegistrarProductoController implements ActionListener, Observer 
     @Override
     public void update(Observable o, Object arg) {
         ObjectObservable objectObservable = (ObjectObservable) arg;
-        if (objectObservable.getObservadorDesignado() == "medicionSensor") {
+        if ("medicionSensor".equals(objectObservable.getObservadorDesignado())) {
             this.producto.setCalidadProducto(objectObservable.getCalidadSensor());
         }
-        if (objectObservable.getObservadorDesignado() == "medicionIdeal") {
+        if ("medicionIdeal".equals(objectObservable.getObservadorDesignado())) {
             this.producto.setPorcentajeMedicion(objectObservable.getCalidadMedicion());
             this.actuador.tomarDecision(this.producto);
         }
-        if (objectObservable.getObservadorDesignado() == "desicionActuador") {
+        if ("desicionActuador".equals(objectObservable.getObservadorDesignado())) {
             this.producto.setEstadoFinal(objectObservable.getEstadoFinal());
             imprimirResultados(this.producto);
         }

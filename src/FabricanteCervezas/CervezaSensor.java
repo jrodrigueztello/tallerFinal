@@ -23,7 +23,7 @@ public class CervezaSensor extends Sensor {
 
     @Override
     public Double realizarMedicion(Producto p) {
-        Double medicionSensor = (Math.random() * (100 - 60 + 1) + 60);
+        Double medicionSensor = (Math.random() * (99 - 60 + 1) + 60);
         ObjectObservable objectObservable = new ObjectObservable("medicionSensor", medicionSensor, null, null, (Cerveza) p);
         p.notifyObservers(objectObservable);
         return medicionSensor;

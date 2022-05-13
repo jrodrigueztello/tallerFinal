@@ -52,7 +52,8 @@ public abstract class Producto extends Observable {
     }
 
     public void setCalidadProducto(Double calidadProducto) {
-        this.calidadProducto = calidadProducto;
+        double redondeado = Math.round(calidadProducto*100.0)/100.0;
+        this.calidadProducto = redondeado;
     }
 
     public void setEstadoFinal(String estadoFinal) {
@@ -60,11 +61,13 @@ public abstract class Producto extends Observable {
     }
 
     public Double getPorcentajeMedicion() {
+        
         return porcentajeMedicion;
     }
 
     public void setPorcentajeMedicion(Double porcentajeMedicion) {
-        this.porcentajeMedicion = porcentajeMedicion;
+        double redondeado = Math.round(porcentajeMedicion*100.0)/100.0;
+        this.porcentajeMedicion = redondeado;
     }
 
     public abstract void addObservable(Observer observer);

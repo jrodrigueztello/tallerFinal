@@ -19,7 +19,6 @@ public class ProductoRepository {
     public Producto save(Producto producto) {
         try {
             list_productos.add(producto);
-            System.out.println(list_productos.toString());
             return producto;
         } catch (Exception e) {
             return null;
@@ -33,7 +32,6 @@ public class ProductoRepository {
     public Boolean eliminarProducto(Producto producto) {
         Boolean response = false;
         if (list_productos.contains(producto)) {
-            //eliminar elemento
             response = true;
         }
         return response;

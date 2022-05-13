@@ -22,7 +22,7 @@ public class CervezaMedicion extends MedicionItem {
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("observable desde medicion");
+        
     }
 
     @Override
@@ -43,8 +43,9 @@ public class CervezaMedicion extends MedicionItem {
         Double medicion = 0.0;
         if (medicionSensor > 90) {
             medicion = 100.0;
+        }else{
+            medicion = (medicionSensor * 100) / medicionIdeal;
         }
-        medicion = (medicionSensor * 100) / medicionIdeal;
         ObjectObservable objectObservable = new ObjectObservable("medicionIdeal", null, medicion, null, (Cerveza) producto);
         producto.notifyObservers(objectObservable);
         return medicion;

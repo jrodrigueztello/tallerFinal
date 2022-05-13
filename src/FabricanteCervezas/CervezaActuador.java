@@ -35,11 +35,10 @@ public class CervezaActuador extends Actuador {
     }
 
     public void tomarDecision(Cerveza producto) {
-        String desicion = "";
+        String desicion = "RECHAZADO";
         if (producto.getPorcentajeMedicion() > 90) {
             desicion = "APROBADO";
         }
-        desicion = "RECHAZADO";
         ObjectObservable objectObservable = new ObjectObservable("desicionActuador", null, null, desicion, (Cerveza) producto);
         producto.notifyObservers(objectObservable);
 
