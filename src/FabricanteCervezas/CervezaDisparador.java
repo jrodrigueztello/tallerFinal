@@ -5,7 +5,6 @@
 package FabricanteCervezas;
 
 import Core.Disparador;
-import Core.MedicionItem;
 import Modelos.ObjectObservable;
 import java.util.Observable;
 import java.util.Observer;

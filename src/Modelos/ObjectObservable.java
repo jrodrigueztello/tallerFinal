@@ -11,6 +11,7 @@ import FabricanteCervezas.Cerveza;
  * @author Jonathan Rodriguez, Juan Vallejos
  */
 public class ObjectObservable {
+
     Producto producto;
     String observadorDesignado;
     Double calidadSensor;
@@ -64,7 +65,5 @@ public class ObjectObservable {
     public void setProducto(Producto producto) {
         this.producto = producto;
     }
-    
-    
 
 }

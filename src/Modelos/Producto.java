@@ -13,14 +13,15 @@ import java.util.Observer;
  * @author Jonathan Rodriguez, Juan Vallejos
  */
 public abstract class Producto extends Observable {
+
     private String nombre;
     private String codigo;
     private Double calidadProducto;
     private Double porcentajeMedicion;
     private String estadoFinal;
-    
-    public ArrayList<Observer> observers =new ArrayList<Observer>();
-    
+
+    public ArrayList<Observer> observers = new ArrayList<Observer>();
+
     public Producto(String nombre, String codigo) {
         this.nombre = nombre;
         this.codigo = codigo;
@@ -65,14 +66,9 @@ public abstract class Producto extends Observable {
     public void setPorcentajeMedicion(Double porcentajeMedicion) {
         this.porcentajeMedicion = porcentajeMedicion;
     }
-    
-    
-    
-   public abstract void addObservable(Observer observer);
-   
-   public abstract void notifyObservers();
 
-    
-    
-    
+    public abstract void addObservable(Observer observer);
+
+    public abstract void notifyObservers();
+
 }

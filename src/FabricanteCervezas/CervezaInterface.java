@@ -7,7 +7,6 @@ package FabricanteCervezas;
 import Controladores.FrmRegistrarProductoController;
 import Vistas.Frm_Registrar_Producto;
 
-
 /**
  *
  * @author Jonathan Rodriguez, Juan Vallejos
@@ -16,7 +15,7 @@ public class CervezaInterface extends Frm_Registrar_Producto {
 
     public CervezaSensor sensor;
 
-    public static Frm_Registrar_Producto frm_rp ;
+    public static Frm_Registrar_Producto frm_rp;
     public static FrmRegistrarProductoController c_frm_rp;
 
     CervezaInterface() {

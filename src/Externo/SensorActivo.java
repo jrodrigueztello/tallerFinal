@@ -11,13 +11,11 @@ import Core.Disparador;
  * @author Jonathan Rodriguez, Juan Vallejos
  */
 public abstract class SensorActivo extends Sensor {
+
     private Disparador disparador;
-    public SensorActivo(Disparador disparador){
+
+    public SensorActivo(Disparador disparador) {
         this.disparador = disparador;
-    }
-    
-    public void notificarDisparador(){
-       // this.disparador.actualizar(this);
     }
 
     public Disparador getDisparador() {
@@ -27,6 +25,5 @@ public abstract class SensorActivo extends Sensor {
     public void setDisparador(Disparador disparador) {
         this.disparador = disparador;
     }
-    
-    
+
 }

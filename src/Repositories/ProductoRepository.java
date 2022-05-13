@@ -13,37 +13,37 @@ import java.util.List;
  * @author Jonathan Rodriguez, Juan Vallejos
  */
 public class ProductoRepository {
-    List<Producto> list_productos = new ArrayList<>() ;
-    
-   public Producto save(Producto producto){
-       try{
-           list_productos.add(producto);
-           System.out.println(list_productos.toString());
-           return producto;
-       }catch(Exception e){
-           return null;
-       }
-   }
-   
-   public List<Producto> listProductos (){
-       return list_productos;
-   }
-   
-   
-   public Boolean eliminarProducto(Producto producto){
-       Boolean response = false;
-       if(list_productos.contains(producto)){
-           //eliminar elemento
-           response = true;
-       }
-       return response;
-   }
-   
-      public Producto eliminarProducto(Producto newProducto, String codigo){
-       Producto prod_response = null;
-       if(list_productos.contains(newProducto)){
-           return prod_response;
-       }
-       return null;
-   }
+
+    List<Producto> list_productos = new ArrayList<>();
+
+    public Producto save(Producto producto) {
+        try {
+            list_productos.add(producto);
+            System.out.println(list_productos.toString());
+            return producto;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public List<Producto> listProductos() {
+        return list_productos;
+    }
+
+    public Boolean eliminarProducto(Producto producto) {
+        Boolean response = false;
+        if (list_productos.contains(producto)) {
+            //eliminar elemento
+            response = true;
+        }
+        return response;
+    }
+
+    public Producto eliminarProducto(Producto newProducto, String codigo) {
+        Producto prod_response = null;
+        if (list_productos.contains(newProducto)) {
+            return prod_response;
+        }
+        return null;
+    }
 }

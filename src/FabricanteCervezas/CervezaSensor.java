@@ -4,21 +4,12 @@
  */
 package FabricanteCervezas;
 
-import Core.Disparador;
 import Externo.Sensor;
-import Externo.SensorActivo;
+
 import Modelos.ObjectObservable;
 import Modelos.Producto;
-import Vistas.Frm_Registrar_Producto;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-import javax.swing.JComponent;
 
 /**
  *
@@ -44,8 +35,7 @@ public class CervezaSensor extends Sensor {
 
     @Override
     public void update(Observable o, Object args) {
-        //ObjectObservable objectObservable = (ObjectObservable) args;
-        System.out.println("disparador desde sensor");
+
     }
 
     @Override

@@ -18,14 +18,13 @@ public class Frm_Registrar_Producto extends javax.swing.JDialog {
     public Frm_Registrar_Producto() {
         initComponents();
         btn_escanear.setEnabled(false);
-                
+
     }
-    
-    public  void habilitarBtnEscanner(){
-        if(!txt_codgo.getText().isEmpty() && !txt_nombre.getText().isEmpty()){
-           btn_escanear.setEnabled(true);
-        }
-        else{
+
+    public void habilitarBtnEscanner() {
+        if (!txt_codgo.getText().isEmpty() && !txt_nombre.getText().isEmpty()) {
+            btn_escanear.setEnabled(true);
+        } else {
             btn_escanear.setEnabled(false);
         }
     }
@@ -205,7 +204,6 @@ public class Frm_Registrar_Producto extends javax.swing.JDialog {
         }
         //</editor-fold>
 
-    
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

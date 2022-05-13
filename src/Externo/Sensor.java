@@ -14,13 +14,15 @@ import java.util.Observer;
  * @author Jonathan Rodriguez, Juan Vallejos
  */
 public abstract class Sensor extends Observable implements Observer {
+
     public abstract Double realizarMedicion(Producto p);
-    public ArrayList<Observer> observers =new ArrayList<Observer>();
-    
-      @Override
+    public ArrayList<Observer> observers = new ArrayList<Observer>();
+
+    @Override
     public abstract void update(Observable o, Object arg);
-    
+
     public abstract void addObservable(Observer observer);
-   
-    public abstract void notifyObservers();;
+
+    public abstract void notifyObservers();
+;
 }

@@ -15,11 +15,9 @@ import java.util.Observer;
  */
 public class CervezaActuador extends Actuador {
 
-   
-
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("Observador desde cerveza actuador");
+
     }
 
     @Override
@@ -38,14 +36,13 @@ public class CervezaActuador extends Actuador {
 
     public void tomarDecision(Cerveza producto) {
         String desicion = "";
-        if(producto.getPorcentajeMedicion()>90){
+        if (producto.getPorcentajeMedicion() > 90) {
             desicion = "APROBADO";
         }
         desicion = "RECHAZADO";
         ObjectObservable objectObservable = new ObjectObservable("desicionActuador", null, null, desicion, (Cerveza) producto);
         producto.notifyObservers(objectObservable);
-        
-        
+
     }
 
 }
