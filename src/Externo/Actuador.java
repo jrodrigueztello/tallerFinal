@@ -4,7 +4,7 @@
  */
 package Externo;
 
-import Core.Item;
+
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -14,7 +14,7 @@ import java.util.Observer;
  * @author Jonathan Rodriguez, Juan Vallejos
  */
 public abstract  class Actuador extends Observable implements Observer  {
-    public abstract boolean action(Item item);
+    
     public ArrayList<Observer> observers =new ArrayList<Observer>();
     
      @Override

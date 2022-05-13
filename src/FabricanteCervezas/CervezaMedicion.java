@@ -4,7 +4,6 @@
  */
 package FabricanteCervezas;
 
-import Core.Item;
 import Core.MedicionItem;
 import Modelos.ObjectObservable;
 import Modelos.Producto;
@@ -20,10 +19,6 @@ public class CervezaMedicion extends MedicionItem {
     public CervezaMedicion() {
         addObservable(this);
     }
-    
-    
-    
-  
 
     @Override
     public void update(Observable o, Object arg) {
@@ -37,22 +32,22 @@ public class CervezaMedicion extends MedicionItem {
 
     @Override
     public void notifyObservers() {
-        if(!observers.isEmpty()){
-           for (int i = 0; i < observers.size(); i++) {
-               observers.get(i).update(this, i);
-           }
+        if (!observers.isEmpty()) {
+            for (int i = 0; i < observers.size(); i++) {
+                observers.get(i).update(this, i);
+            }
         }
     }
 
-    Double ejecutarMedicion(Double medicionSensor,Double medicionIdeal, Producto producto) {
+    Double ejecutarMedicion(Double medicionSensor, Double medicionIdeal, Producto producto) {
         Double medicion = 0.0;
-        if(medicionSensor>90){
-            medicion =  100.0;
+        if (medicionSensor > 90) {
+            medicion = 100.0;
         }
-        medicion =  (medicionSensor *100)/medicionIdeal;
+        medicion = (medicionSensor * 100) / medicionIdeal;
         ObjectObservable objectObservable = new ObjectObservable("medicionIdeal", null, medicion, null, (Cerveza) producto);
         producto.notifyObservers(objectObservable);
         return medicion;
     }
-    
+
 }

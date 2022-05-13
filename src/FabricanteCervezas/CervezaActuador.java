@@ -4,7 +4,6 @@
  */
 package FabricanteCervezas;
 
-import Core.Item;
 import Externo.Actuador;
 import Modelos.ObjectObservable;
 import java.util.Observable;
@@ -16,12 +15,7 @@ import java.util.Observer;
  */
 public class CervezaActuador extends Actuador {
 
-    @Override
-    public boolean action(Item item) {
-        //Cerveza cerveza = (Cerveza) item;
-        //cerveza.setEstadoFinal("APROBADO");
-        return true;
-    }
+   
 
     @Override
     public void update(Observable o, Object arg) {
